@@ -3,6 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import { useUser } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   { href: "/dashboard", label: "Inicio" },
@@ -15,6 +17,14 @@ const navItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const [menuVisible, setMenuVisible] = useState(true);
+
+  const { logout } = useUser();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   return (
     <>
@@ -35,22 +45,19 @@ export default function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-2 rounded ${
-                  pathname === item.href
+                className={`px-3 py-2 rounded ${pathname === item.href
                     ? "bg-green-500 text-white font-semibold"
                     : "hover:bg-slate-700"
-                }`}
+                  }`}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
           <div className="mt-auto">
-            <Link href="../">
-                <button className="w-full bg-red-500 hover:bg-red-600 py-2 px-4 rounded">
-                Cerrar sesión
-                </button>
-            </Link>
+            <button onClick={handleLogout} className="text-red-500 hover:underline">
+              Cerrar sesión
+            </button>
           </div>
         </aside>
       )}

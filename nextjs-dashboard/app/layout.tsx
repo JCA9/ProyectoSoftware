@@ -1,6 +1,8 @@
 // app/layout.tsx
+
 import "./globals.css";
 import type { Metadata } from "next";
+import { UserProvider } from "@/context/UserContext"; 
 
 export const metadata: Metadata = {
   title: "CodeQuest – Aprende Programación Jugando",
@@ -14,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="bg-white text-gray-900 font-sans">{children}</body>
+      <body className="bg-white text-gray-900 font-sans">
+        <UserProvider>
+          {children}
+        </UserProvider>
+      </body>
     </html>
   );
 }
