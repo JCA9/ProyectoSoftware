@@ -27,10 +27,11 @@ export default function LogrosPage() {
 
         // Aquí definimos los logros visuales con colores (los estáticos que tú ya tenías)
         const logrosDefinidos: Omit<Logro, "desbloqueado">[] = [
-          { id: 1, titulo: "¡Primera Variable!", descripcion: "Completaste tu primera lección en Fundamentos", mundo: "Fundamentos", color: "bg-green-100" },
-          { id: 2, titulo: "Control Maestro", descripcion: "Completaste todos los if y loops", mundo: "Control de Flujo", color: "bg-blue-100" },
-          { id: 3, titulo: "Funciones 101", descripcion: "Usaste funciones correctamente en un reto", mundo: "Funciones y Lógica", color: "bg-purple-100" },
-          { id: 4, titulo: "Fundamentos Pro", descripcion: "Completaste todas las lecciones del Mundo 1", mundo: "Fundamentos", color: "bg-green-200" },
+          { id: 1, titulo: "¡Primer Paso!", descripcion: "Completaste tu primera lección en Fundamentos de Python", mundo: "Mundo 1: Fundamentos de Python", color: "bg-green-100" },
+          { id: 2, titulo: "Dominio básico", descripcion: "Completaste todas las lecciones del Mundo 1", mundo: "Mundo 1: Fundamentos de Python", color: "bg-blue-100" },
+          { id: 3, titulo: "Control total", descripcion: "Completaste todas las lecciones del Mundo 2", mundo: "Mundo 2: Control de Flujos", color: "bg-purple-100" },
+          { id: 4, titulo: "Maestro de funciones", descripcion: "Completaste todas las lecciones del Mundo 3", mundo: "Mundo 3: Funciones en Python", color: "bg-green-200" },
+          { id: 5, titulo: "Explorador", descripcion: "Has completado el 100% de CodeQuest.", mundo: "Dios de la Programación", color: "bg-green-200" },
         ];
 
         // Combinamos backend + visual
