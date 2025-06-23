@@ -51,35 +51,41 @@ export default function DashboardInicio() {
 
   return (
     <ProtectedRoute>
-      <div className="flex min-h-screen bg-slate-50">
+      <div className="flex min-h-screen bg-gradient-to-tr from-[#0f2027] via-[#203a43] to-[#2c5364]">
         <Sidebar />
-        <main className="flex-1 bg-slate-50 px-4 py-6 md:px-10 md:py-8 md:ml-64 w-full">
-          <h1 className="text-3xl font-bold text-slate-800 mb-6">Inicio</h1>
+        <main className="flex-1 px-6 py-8 md:px-16 md:py-12 md:ml-64 w-full">
+          <h1 className="text-5xl font-extrabold text-white mb-10 flex items-center gap-4">
+             Inicio
+          </h1>
 
-          <div className="bg-white shadow-md rounded-xl p-6 mb-8 border border-slate-200">
-            <form onSubmit={handleCrearPost} className="flex flex-col space-y-4">
+          <div className="bg-white/10 backdrop-blur-lg shadow-2xl rounded-3xl p-8 mb-12 border border-white/20 transition-all hover:shadow-3xl">
+            <form onSubmit={handleCrearPost} className="flex flex-col space-y-6">
               <textarea
-                placeholder="Escribe una nueva publicación..."
-                className="w-full border rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="💡 Comparte algo inspirador..."
+                className="w-full bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 text-white placeholder-white/70 focus:outline-none focus:ring-4 focus:ring-green-400/70 transition"
                 value={nuevoPost}
                 onChange={(e) => setNuevoPost(e.target.value)}
-                rows={3}
+                rows={4}
               />
               <button
                 type="submit"
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md self-end"
+                className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-extrabold py-3 px-8 rounded-2xl self-end transition-transform hover:scale-110 shadow-lg"
               >
-                Publicar
+                🚀 Publicar
               </button>
             </form>
           </div>
 
           {loading ? (
-            <p className="text-center">Cargando publicaciones...</p>
+            <div className="text-center text-white text-xl animate-pulse">
+              🔄 Cargando publicaciones...
+            </div>
           ) : posts.length === 0 ? (
-            <p className="text-center text-gray-600">Aún no hay publicaciones de tus amigos.</p>
+            <div className="text-center text-white/80 text-xl">
+              💤 No hay publicaciones todavía, ¡sé el primero en escribir algo!
+            </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-8">
               {posts.map((post) => (
                 <PostItem
                   key={post.id}

@@ -59,42 +59,51 @@ export default function LeccionPage() {
     }
   }
 
-  if (!leccion) return <div className="p-10">Cargando lección...</div>;
+  if (!leccion) return (
+    <div className="flex min-h-screen bg-gradient-to-tr from-[#0f2027] via-[#203a43] to-[#2c5364] justify-center items-center">
+      <p className="text-white text-2xl animate-pulse">Cargando lección...</p>
+    </div>
+  );
 
   return (
     <ProtectedRoute>
-      <div className="flex min-h-screen bg-slate-50">
+      <div className="flex min-h-screen bg-gradient-to-tr from-[#0f2027] via-[#203a43] to-[#2c5364]">
         <Sidebar />
-        <main className="flex-1 p-6 md:ml-64 w-full min-h-screen">
-          <h1 className="text-3xl font-bold text-slate-800 mb-6">{leccion.nombre}</h1>
-          <p className="mb-4 text-lg">{leccion.descripcion}</p>
+        <main className="flex-1 p-10 md:ml-64 w-full flex flex-col items-center">
+          <h1 className="text-5xl font-extrabold text-white mb-10">{leccion.nombre}</h1>
+          <p className="text-white/80 text-xl mb-12">{leccion.descripcion}</p>
 
-          <div className="bg-white p-6 rounded-xl shadow-md mb-8 space-y-6">
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 w-full max-w-3xl space-y-10">
             {leccion.preguntas.map((pregunta: any) => (
               <div key={pregunta.id}>
-                <p className="font-semibold text-slate-700 mb-2">{pregunta.enunciado}</p>
+                <p className="text-2xl font-bold text-white mb-4">{pregunta.enunciado}</p>
 
                 {leccion.tipoPregunta === 'texto' && (
                   <input
                     type="text"
                     value={respuestas[pregunta.id] || ""}
                     onChange={(e) => setRespuestas({ ...respuestas, [pregunta.id]: e.target.value })}
-                    className="border p-3 rounded w-full mb-4"
+                    className="w-full bg-white/20 backdrop-blur-md border border-white/30 rounded-xl px-6 py-4 text-white text-lg placeholder-white/70 focus:outline-none focus:ring-4 focus:ring-green-400 transition"
                     placeholder="Escribe tu respuesta..."
                   />
                 )}
 
                 {(leccion.tipoPregunta === 'multiple' || leccion.tipoPregunta === 'booleano') && (
-                  <div className="space-y-2">
+                  <div className="space-y-4 mt-2">
                     {pregunta.opciones?.length > 0 ? (
                       pregunta.opciones.map((opcion: any) => (
-                        <label key={opcion.id} className="flex items-center gap-2">
+                        <label
+                          key={opcion.id}
+                          className={`flex items-center gap-3 px-5 py-3 rounded-xl cursor-pointer transition 
+                            ${respuestas[pregunta.id] === opcion.id ? "bg-green-500/80 text-white" : "bg-white/20 text-white"}`}
+                        >
                           <input
                             type="radio"
                             name={`pregunta_${pregunta.id}`}
                             value={opcion.id}
                             checked={respuestas[pregunta.id] === opcion.id}
                             onChange={() => setRespuestas({ ...respuestas, [pregunta.id]: opcion.id })}
+                            className="hidden"
                           />
                           {opcion.textoOpcion}
                         </label>
@@ -107,14 +116,20 @@ export default function LeccionPage() {
               </div>
             ))}
 
-            <button
-              className="bg-green-500 text-white px-6 py-2 rounded font-semibold"
-              onClick={manejarEnvio}
-            >
-              Enviar Respuestas
-            </button>
+            <div className="flex justify-center">
+              <button
+                className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-extrabold py-4 px-10 rounded-2xl transition-transform hover:scale-110 shadow-lg text-xl"
+                onClick={manejarEnvio}
+              >
+                Enviar Respuestas 🚀
+              </button>
+            </div>
 
-            {mensaje && <p className="mt-4 font-bold">{mensaje}</p>}
+            {mensaje && (
+              <div className={`text-center font-bold text-xl ${mensaje.startsWith("✅") ? "text-green-400" : "text-red-400"}`}>
+                {mensaje}
+              </div>
+            )}
           </div>
         </main>
       </div>

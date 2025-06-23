@@ -4,267 +4,99 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col bg-white">
-      {/* Sección Hero */}
-      <section
-        id="inicio"
-        className="min-h-screen flex flex-col items-center justify-center text-center p-4"
-      >
-        {/* Navbar fijo superior */}
-        <div className="fixed top-0 left-0 w-full bg-white shadow-md z-50 px-10 py-4 flex items-center justify-between">
-          {/* Logo */}
-          <div className="text-green-600 text-2xl font-bold">
-            🧠 CodeQuest
-          </div>
+    <main className="min-h-screen flex flex-col bg-gradient-to-tr from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
 
-          {/* Botón */}
-          <Link href="/registro">
-            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-all">
-              Empieza Ahora
-            </button>
-          </Link>
+      {/* Navbar fijo superior */}
+      <div className="fixed top-0 left-0 w-full bg-gradient-to-b from-[#0f2027]/80 to-transparent z-50 px-10 py-4 flex items-center justify-between shadow-lg backdrop-blur-md">
+        <div className="text-3xl font-extrabold flex items-center gap-2">
+          <span className="text-pink-400 animate-pulse">🧠</span> CodeQuest
         </div>
 
+        <Link href="/registro">
+          <button className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-black font-bold py-3 px-6 rounded-xl shadow-lg transition-transform hover:scale-105">
+            Empieza Ahora
+          </button>
+        </Link>
+      </div>
 
+      {/* Hero */}
+      <section id="inicio" className="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-28 relative">
+        <div className="absolute top-32 left-1/2 -translate-x-1/2 z-0">
+          <Image src="/Duo.gif" alt="CodeQuest personajes" width={400} height={400} className="object-contain drop-shadow-lg" />
+        </div>
 
-        {/* Contenido principal */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl w-full">
-          {/* Imagen ilustrativa */}
-          <div className="relative w-72 h-72 md:w-[400px] md:h-[400px]">
-            <Image
-              src="/hero-desktop.png"
-              alt="CodeQuest personajes"
-              fill
-              className="object-contain"
-            />
-          </div>
-
-          {/* Texto y botones */}
-          <div className="flex flex-col items-center md:items-start max-w-md">
-            <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
-              ¡Aprende a programar de forma divertida y efectiva!
-            </h1>
-            <p className="text-lg text-gray-600 mb-6">
-              CodeQuest es la plataforma que te enseña programación paso a paso con ejercicios prácticos, retos y recompensas.
-            </p>
-
-            <div className="flex gap-4 w-full justify-center md:justify-start">
-              <Link href="/registro">
-                <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl shadow-md">
-                  EMPIEZA AHORA
-                </button>
-              </Link>
-              <Link href="/login">
-                <button className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-xl border">
-                  YA TENGO UNA CUENTA
-                </button>
-              </Link>
-            </div>
+        <div className="relative z-10 mt-36 md:mt-16 max-w-3xl">
+          <h1 className="text-5xl font-extrabold mb-6">¡Aprende a programar de forma divertida y efectiva!</h1>
+          <p className="text-xl mb-8 text-white/80">
+            CodeQuest te enseña programación paso a paso con ejercicios interactivos, retos y logros desbloqueables.
+          </p>
+          <div className="flex flex-col md:flex-row justify-center gap-6">
+            <Link href="/registro">
+              <button className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-black font-extrabold py-4 px-10 rounded-xl shadow-xl text-lg transition-transform hover:scale-110">
+                EMPIEZA AHORA
+              </button>
+            </Link>
+            <Link href="/login">
+              <button className="bg-white text-black font-bold py-4 px-10 rounded-xl shadow-xl border transition-transform hover:scale-105">
+                YA TENGO CUENTA
+              </button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Lenguajes disponibles */}
-      <section className="w-full py-8 bg-gray-100 flex flex-wrap justify-center items-center gap-6">
+      {/* Lenguajes */}
+      <section className="w-full py-12 bg-white text-gray-800 flex flex-wrap justify-center items-center gap-8">
         {["Python", "JavaScript", "C++", "Java", "HTML", "SQL"].map((lang) => (
-          <span
-            key={lang}
-            className="text-md font-medium text-gray-700 hover:underline cursor-pointer"
-          >
-            {lang}
-          </span>
+          <span key={lang} className="text-xl font-semibold hover:text-green-600 transition">{lang}</span>
         ))}
       </section>
 
-      {/* Sección 1: divertido, práctico y gratuito */}
-      <section
-        id="ventajas"
-        className="w-full py-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12"
-      >
+      {/* Ventajas */}
+      <section id="ventajas" className="w-full py-24 px-6 flex flex-col md:flex-row items-center justify-center gap-16">
         <div className="max-w-lg text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
-            divertido, práctico y gratuito
-          </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            Aprender a programar nunca fue tan divertido. En CodeQuest, cada lección te reta con ejercicios interactivos que desbloquean nuevas misiones y habilidades.
-            <span className="text-blue-600 font-semibold"> Los datos muestran que practicar de forma constante con mini-retos mejora la retención hasta 80%.</span>
-            ¡Comienza a construir tu conocimiento desde el primer día!
+          <h2 className="text-5xl font-extrabold text-green-400 mb-6">Divertido, práctico y gratuito</h2>
+          <p className="text-white/90 text-lg leading-relaxed">
+            Aprender a programar nunca fue tan divertido. Desbloquea misiones, completa retos interactivos, y mejora hasta un <span className="text-blue-300 font-bold">80% tu retención</span> practicando de forma activa.
           </p>
         </div>
-        <div className="w-64 h-64 md:w-80 md:h-80 relative">
-          <img
-            src="/publicaciones/codificando-divertido.png"
-            alt="Ilustración divertida de CodeQuest"
-            className="w-full h-full object-contain"
-          />
+        <div className="w-72 h-72 md:w-96 md:h-96 relative">
+          <Image src="/publicaciones/codificando-divertido.png" alt="Ilustración divertida" fill className="object-contain" />
         </div>
       </section>
 
-      {/* Sección 2: respaldado por la ciencia */}
-      <section
-        id="ciencia"
-        className="w-full bg-white-50 py-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12"
-      >
-        <div className="w-64 h-64 md:w-80 md:h-80 relative">
-          <img
-            src="/publicaciones/respaldo-ciencia.png"
-            alt="Respaldado por ciencia"
-            className="w-full h-full object-contain"
-          />
+      {/* Ciencia */}
+      <section id="ciencia" className="w-full py-24 px-6 flex flex-col-reverse md:flex-row items-center justify-center gap-16 bg-white text-black">
+        <div className="w-72 h-72 md:w-96 md:h-96 relative">
+          <Image src="/publicaciones/respaldo-ciencia.png" alt="Respaldado por ciencia" fill className="object-contain" />
         </div>
         <div className="max-w-lg text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
-            respaldado por la ciencia
-          </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            CodeQuest combina métodos probados de enseñanza con teorías modernas del aprendizaje activo. Nuestro contenido es interactivo, basado en evidencia y diseñado para mantenerte motivado mientras desarrollas habilidades técnicas reales.
+          <h2 className="text-5xl font-extrabold text-green-600 mb-6">Respaldado por la ciencia</h2>
+          <p className="text-lg leading-relaxed">
+            Combinamos métodos pedagógicos probados y ciencia del aprendizaje activo. CodeQuest mantiene tu motivación mientras adquieres habilidades técnicas reales.
           </p>
         </div>
       </section>
 
-      {/* Sección 1: divertido, práctico y gratuito */}
-      <section
-        id="ventajas"
-        className="w-full py-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12"
-      >
-        <div className="max-w-lg text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
-            divertido, práctico y gratuito
-          </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            Aprender a programar nunca fue tan divertido. En CodeQuest, cada lección te reta con ejercicios interactivos que desbloquean nuevas misiones y habilidades.
-            <span className="text-blue-600 font-semibold"> Los datos muestran que practicar de forma constante con mini-retos mejora la retención hasta 80%.</span>
-            ¡Comienza a construir tu conocimiento desde el primer día!
-          </p>
-        </div>
-        <div className="w-64 h-64 md:w-80 md:h-80 relative">
-          <img
-            src="/publicaciones/codificando-divertido.png"
-            alt="Ilustración divertida de CodeQuest"
-            className="w-full h-full object-contain"
-          />
-        </div>
-      </section>
-
-      {/* Sección 2: respaldado por la ciencia */}
-      <section
-        id="ciencia"
-        className="w-full bg-white-50 py-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12"
-      >
-        <div className="w-64 h-64 md:w-80 md:h-80 relative">
-          <img
-            src="/publicaciones/respaldo-ciencia.png"
-            alt="Respaldado por ciencia"
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <div className="max-w-lg text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
-            respaldado por la ciencia
-          </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            CodeQuest combina métodos probados de enseñanza con teorías modernas del aprendizaje activo. Nuestro contenido es interactivo, basado en evidencia y diseñado para mantenerte motivado mientras desarrollas habilidades técnicas reales.
-          </p>
-        </div>
-      </section>
-
-      {/* Sección 2: respaldado por la ciencia */}
-      <section
-        id="ciencia"
-        className="w-full bg-gray-700 py-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12"
-      >
-        <div className="w-64 h-64 md:w-80 md:h-80 relative">
-          <img
-            src="/publicaciones/respaldo-ciencia.png"
-            alt="Respaldado por ciencia"
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <div className="max-w-lg text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
-            respaldado por la ciencia
-          </h2>
-          <p className="text-white-50 text-lg leading-relaxed">
-            CodeQuest combina métodos probados de enseñanza con teorías modernas del aprendizaje activo. Nuestro contenido es interactivo, basado en evidencia y diseñado para mantenerte motivado mientras desarrollas habilidades técnicas reales.
-          </p>
-        </div>
-      </section>
-
-            {/* Sección 1: divertido, práctico y gratuito */}
-      <section
-        id="ventajas"
-        className="w-full py-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12"
-      >
-        <div className="max-w-lg text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
-            divertido, práctico y gratuito
-          </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            Aprender a programar nunca fue tan divertido. En CodeQuest, cada lección te reta con ejercicios interactivos que desbloquean nuevas misiones y habilidades.
-            <span className="text-blue-600 font-semibold"> Los datos muestran que practicar de forma constante con mini-retos mejora la retención hasta 80%.</span>
-            ¡Comienza a construir tu conocimiento desde el primer día!
-          </p>
-        </div>
-        <div className="w-64 h-64 md:w-80 md:h-80 relative">
-          <img
-            src="/publicaciones/codificando-divertido.png"
-            alt="Ilustración divertida de CodeQuest"
-            className="w-full h-full object-contain"
-          />
-        </div>
-      </section>
-
-      {/* Sección 2: respaldado por la ciencia */}
-      <section
-        id="ciencia"
-        className="w-full bg-white-50 py-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12"
-      >
-        <div className="w-64 h-64 md:w-80 md:h-80 relative">
-          <img
-            src="/publicaciones/respaldo-ciencia.png"
-            alt="Respaldado por ciencia"
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <div className="max-w-lg text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
-            respaldado por la ciencia
-          </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            CodeQuest combina métodos probados de enseñanza con teorías modernas del aprendizaje activo. Nuestro contenido es interactivo, basado en evidencia y diseñado para mantenerte motivado mientras desarrollas habilidades técnicas reales.
-          </p>
-        </div>
-      </section>
-
-      {/* Footer estilo Duolingo */}
-      <footer className="bg-lime-500 text-white py-12 px-6 mt-12">
+      {/* Footer */}
+      <footer className="bg-lime-500 text-white py-16 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 text-sm">
-
-          {/* Sobre nosotros */}
           <div>
             <h3 className="font-bold mb-2">Sobre nosotros</h3>
             <ul className="space-y-1">
-              {["Cursos", "Misión", "Método de enseñanza", "Eficacia", "Manual de CodeQuest", "Empleo", "Prensa", "Contáctanos"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="hover:underline">{item}</a>
-                </li>
+              {["Cursos", "Misión", "Empleo", "Contáctanos"].map((item) => (
+                <li key={item}><a href="#" className="hover:underline">{item}</a></li>
               ))}
             </ul>
           </div>
-
-          {/* Productos */}
           <div>
             <h3 className="font-bold mb-2">Productos</h3>
             <ul className="space-y-1">
-              {["CodeQuest", "CodeQuest Junior", "Podcast", "CodeQuest para empresas"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="hover:underline">{item}</a>
-                </li>
+              {["CodeQuest", "Podcast", "Empresas"].map((item) => (
+                <li key={item}><a href="#" className="hover:underline">{item}</a></li>
               ))}
             </ul>
           </div>
-
-          {/* Aplicaciones */}
           <div>
             <h3 className="font-bold mb-2">Aplicaciones</h3>
             <ul className="space-y-1">
@@ -272,47 +104,42 @@ export default function HomePage() {
               <li><a href="#" className="hover:underline">iOS</a></li>
             </ul>
           </div>
-
-          {/* Soporte */}
           <div>
-            <h3 className="font-bold mb-2">Ayuda y soporte</h3>
+            <h3 className="font-bold mb-2">Soporte</h3>
             <ul className="space-y-1">
               {["FAQ", "Soporte Técnico", "Estado del servicio"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="hover:underline">{item}</a>
-                </li>
+                <li key={item}><a href="#" className="hover:underline">{item}</a></li>
               ))}
             </ul>
           </div>
-
-          {/* Legal */}
           <div>
-            <h3 className="font-bold mb-2">Términos y privacidad</h3>
+            <h3 className="font-bold mb-2">Legal</h3>
             <ul className="space-y-1">
-              {["Normas de la comunidad", "Términos", "Privacidad"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="hover:underline">{item}</a>
-                </li>
+              {["Normas", "Términos", "Privacidad"].map((item) => (
+                <li key={item}><a href="#" className="hover:underline">{item}</a></li>
               ))}
             </ul>
           </div>
-
-          {/* Social */}
           <div>
             <h3 className="font-bold mb-2">Social</h3>
             <ul className="space-y-1">
-              {["Blog", "Instagram", "TikTok", "Twitter", "YouTube"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="hover:underline">{item}</a>
-                </li>
+              {["Instagram", "TikTok", "YouTube"].map((item) => (
+                <li key={item}><a href="#" className="hover:underline">{item}</a></li>
               ))}
             </ul>
           </div>
         </div>
       </footer>
 
-
-
+      <style jsx>{`
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+          0%, 100% { transform: translate(-50%, 0); }
+          50% { transform: translate(-50%, -20px); }
+        }
+      `}</style>
     </main>
   );
 }

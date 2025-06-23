@@ -10,6 +10,7 @@ interface Mundo {
   nombre: string;
   descripcion: string;
   orden: number;
+  bloqueado?: boolean; // Agregamos opcionalmente el estado bloqueado decorativo
 }
 
 export default function MundosPage() {
@@ -19,7 +20,33 @@ export default function MundosPage() {
     async function cargarMundos() {
       try {
         const data = await getMundos();
-        setMundos(data);
+
+        // Agregamos mundos decorativos bloqueados
+        const decorativos: Mundo[] = [
+          {
+            id: 9991,
+            nombre: "Mundo 4: Manipulación de Datos \n PROXIMAMENTE",
+            descripcion: "Aprende a manejar colecciones, listas, diccionarios y estructuras avanzadas.",
+            orden: 4,
+            bloqueado: true
+          },
+          {
+            id: 9992,
+            nombre: "Mundo 5: Programación Orientada a Objetos \n PROXIMAMENTE",
+            descripcion: "Descubre cómo crear clases, objetos y diseñar software modular.",
+            orden: 5,
+            bloqueado: true
+          },
+          {
+            id: 9993,
+            nombre: "Mundo 6: Inteligencia Artificial Básica \n PROXIMAMENTE",
+            descripcion: "Tus primeros pasos con modelos, predicciones y algoritmos inteligentes.",
+            orden: 6,
+            bloqueado: true
+          }
+        ];
+
+        setMundos([...data, ...decorativos]);
       } catch (err) {
         console.error("Error al obtener mundos:", err);
       }
@@ -27,22 +54,59 @@ export default function MundosPage() {
     cargarMundos();
   }, []);
 
+  const gradientes = [
+    "from-green-400 to-green-600",
+    "from-blue-400 to-blue-600",
+    "from-purple-400 to-purple-600",
+    "from-yellow-400 to-yellow-600",
+    "from-pink-400 to-pink-600",
+    "from-indigo-400 to-indigo-600",
+    "from-rose-400 to-rose-600",
+    "from-cyan-400 to-cyan-600"
+  ];
+
   return (
     <ProtectedRoute>
-      <div className="flex min-h-screen bg-slate-50">
+      <div className="flex min-h-screen bg-gradient-to-tr from-[#0f2027] via-[#203a43] to-[#2c5364]">
         <Sidebar />
-        <main className="flex-1 bg-slate-50 p-6 md:ml-64 w-full min-h-screen">
-          <h1 className="text-3xl font-bold text-slate-800 mb-8">Explora los Mundos</h1>
+        <main className="flex-1 p-10 md:ml-64 w-full flex flex-col items-center">
+          <h1 className="text-5xl font-extrabold text-white mb-16 flex items-center gap-4">
+            Explora los Mundos
+          </h1>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mundos.map((mundo) => (
-              <Link key={mundo.id} href={`/dashboard/mundos/${mundo.id}`}>
-                <div className={`rounded-xl p-6 shadow-md cursor-pointer hover:scale-105 transition-all bg-green-100`}>
-                  <h2 className="text-xl font-bold mb-2 text-slate-800">{mundo.nombre}</h2>
-                  <p className="text-slate-600">{mundo.descripcion}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16 w-full">
+            {mundos.map((mundo, index) => {
+              const imageUrl = `/images/mundos/mundo${index + 1}.png`; // Suponiendo nombres de imagen secuenciales
+              return mundo.bloqueado ? (
+                <div
+                  key={mundo.id}
+                  className={`rounded-3xl shadow-2xl text-white flex flex-col justify-between h-72 cursor-not-allowed bg-cover bg-center relative`}
+                  style={{ backgroundImage: `url(${imageUrl})` }}
+                >
+                  <div className="absolute inset-0 bg-black/60 rounded-3xl"></div>
+                  <div className="relative p-10">
+                    <div className="flex justify-between items-start">
+                      <h2 className="text-3xl font-extrabold mb-4">{mundo.nombre}</h2>
+                      <div className="text-4xl">🔒</div>
+                    </div>
+                    <p className="text-white/90 text-lg">{mundo.descripcion}</p>
+                  </div>
                 </div>
-              </Link>
-            ))}
+              ) : (
+                <Link key={mundo.id} href={`/dashboard/mundos/${mundo.id}`} className="transition-transform hover:scale-110">
+                  <div
+                    className={`rounded-3xl shadow-2xl text-white flex flex-col justify-between h-80 cursor-pointer bg-cover bg-center relative`}
+                    style={{ backgroundImage: `url(${imageUrl})` }}
+                  >
+                    <div className="absolute inset-0 bg-black/65 rounded-3xl"></div>
+                    <div className="relative p-10">
+                      <h2 className="text-3xl font-extrabold mb-4">{mundo.nombre}</h2>
+                      <p className="text-white/90 text-lg">{mundo.descripcion}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </main>
       </div>
