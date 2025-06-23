@@ -36,14 +36,13 @@ export default function LeccionPage() {
       const respuestaUsuario = respuestas[pregunta.id];
 
       if (leccion.tipoPregunta === 'texto') {
-        // Texto abierto (comparación simple, sin distinguir mayúsculas)
         if (respuestaUsuario?.trim().toLowerCase() !== pregunta.respuesta.trim().toLowerCase()) {
           correcto = false;
           break;
         }
       } 
       else if (leccion.tipoPregunta === 'multiple' || leccion.tipoPregunta === 'booleano') {
-        const opcionSeleccionada = pregunta.opciones.find((o: { id: number; }) => o.id === parseInt(respuestaUsuario));
+        const opcionSeleccionada = pregunta.opciones?.find((o: any) => o.id === parseInt(respuestaUsuario));
         if (!opcionSeleccionada || !opcionSeleccionada.esCorrecta) {
           correcto = false;
           break;
@@ -87,18 +86,22 @@ export default function LeccionPage() {
 
                 {(leccion.tipoPregunta === 'multiple' || leccion.tipoPregunta === 'booleano') && (
                   <div className="space-y-2">
-                    {pregunta.opciones.map((opcion: any) => (
-                      <label key={opcion.id} className="flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name={`pregunta_${pregunta.id}`}
-                          value={opcion.id}
-                          checked={respuestas[pregunta.id] === opcion.id}
-                          onChange={() => setRespuestas({ ...respuestas, [pregunta.id]: opcion.id })}
-                        />
-                        {opcion.textoOpcion}
-                      </label>
-                    ))}
+                    {pregunta.opciones?.length > 0 ? (
+                      pregunta.opciones.map((opcion: any) => (
+                        <label key={opcion.id} className="flex items-center gap-2">
+                          <input
+                            type="radio"
+                            name={`pregunta_${pregunta.id}`}
+                            value={opcion.id}
+                            checked={respuestas[pregunta.id] === opcion.id}
+                            onChange={() => setRespuestas({ ...respuestas, [pregunta.id]: opcion.id })}
+                          />
+                          {opcion.textoOpcion}
+                        </label>
+                      ))
+                    ) : (
+                      <p className="text-sm text-red-500">⚠ No hay opciones registradas para esta pregunta</p>
+                    )}
                   </div>
                 )}
               </div>

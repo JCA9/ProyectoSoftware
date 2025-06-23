@@ -36,7 +36,7 @@ export default function LogrosPage() {
         // Combinamos backend + visual
         const logrosCombinados: Logro[] = logrosDefinidos.map((logro) => ({
           ...logro,
-          desbloqueado: data.some((l: any) => l.id === logro.id && l.desbloqueado),
+          desbloqueado: data.some((l: any) => l.id === logro.id),
         }));
 
         setLogros(logrosCombinados);

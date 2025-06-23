@@ -147,11 +147,12 @@ export async function getLeccionesPorMundo(mundoId: number) {
   return await res.json();
 }
 
-// 🔹 GET Detalle de lección
+// 🔹 GET Detalle de lección con preguntas y opciones
 export async function getLeccion(idLeccion: number) {
   const res = await fetch(`${BASE_URL}/lecciones/${idLeccion}`);
-  if (!res.ok) throw new Error(`Error al obtener lección (ID ${idLeccion})`);
+  if (!res.ok) throw new Error("Error al obtener lección");
   return await res.json();
 }
+
 
 

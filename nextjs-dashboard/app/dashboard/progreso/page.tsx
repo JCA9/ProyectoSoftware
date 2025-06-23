@@ -71,7 +71,7 @@ export default function ProgresoPage() {
 
 
   return (
-    <ProtectedRoute>
+    // <ProtectedRoute>
       <div className="flex min-h-screen bg-slate-50">
         <Sidebar />
         <main className="flex-1 p-6 md:ml-64 w-full min-h-screen">
@@ -92,6 +92,6 @@ export default function ProgresoPage() {
           )}
         </main>
       </div>
-    </ProtectedRoute>
+    // </ProtectedRoute>
   );
 }
