@@ -12,6 +12,7 @@ interface Logro {
   mundo: string;
   color: string;
   desbloqueado: boolean;
+  imagen: string;
 }
 
 export default function LogrosPage() {
@@ -26,11 +27,11 @@ export default function LogrosPage() {
         const data = await getLogros(usuario!.id);
 
         const logrosDefinidos: Omit<Logro, "desbloqueado">[] = [
-          { id: 1, titulo: "¡Primer Paso!", descripcion: "Completaste tu primera lección en Fundamentos de Python", mundo: "Mundo 1: Fundamentos de Python", color: "from-green-400 to-green-600" },
-          { id: 2, titulo: "Dominio básico", descripcion: "Completaste todas las lecciones del Mundo 1", mundo: "Mundo 1: Fundamentos de Python", color: "from-blue-400 to-blue-600" },
-          { id: 3, titulo: "Control total", descripcion: "Completaste todas las lecciones del Mundo 2", mundo: "Mundo 2: Control de Flujos", color: "from-purple-400 to-purple-600" },
-          { id: 4, titulo: "Maestro de funciones", descripcion: "Completaste todas las lecciones del Mundo 3", mundo: "Mundo 3: Funciones en Python", color: "from-yellow-400 to-yellow-600" },
-          { id: 5, titulo: "Explorador", descripcion: "Has completado el 100% de CodeQuest.", mundo: "Dios de la Programación", color: "from-pink-400 to-pink-600" },
+          { id: 1, titulo: "¡Primer Paso!", descripcion: "Completaste tu primera lección en Fundamentos de Python", mundo: "Mundo 1: Fundamentos de Python", color: "from-green-400 to-green-600", imagen: "/logros/1.jpg" },
+          { id: 2, titulo: "Dominio básico", descripcion: "Completaste todas las lecciones del Mundo 1", mundo: "Mundo 1: Fundamentos de Python", color: "from-blue-400 to-blue-600", imagen: "/logros/2.jpg" },
+          { id: 3, titulo: "Control total", descripcion: "Completaste todas las lecciones del Mundo 2", mundo: "Mundo 2: Control de Flujos", color: "from-purple-400 to-purple-600", imagen: "/logros/3.jpg" },
+          { id: 4, titulo: "Maestro de funciones", descripcion: "Completaste todas las lecciones del Mundo 3", mundo: "Mundo 3: Funciones en Python", color: "from-yellow-400 to-yellow-600", imagen: "/logros/4.jpg" },
+          { id: 5, titulo: "Explorador", descripcion: "Has completado el 100% de CodeQuest.", mundo: "Dios de la Programación", color: "from-pink-400 to-pink-600", imagen: "/logros/5.jpg" },
         ];
 
         const logrosCombinados: Logro[] = logrosDefinidos.map((logro) => ({
@@ -66,29 +67,33 @@ export default function LogrosPage() {
               {logros.map((logro) => (
                 <div
                   key={logro.id}
-                  className={`rounded-3xl p-8 shadow-2xl transition-all transform hover:scale-105 ${
-                    logro.desbloqueado
-                      ? `bg-gradient-to-br ${logro.color} text-white`
-                      : `bg-white/10 backdrop-blur-lg border border-white/20 text-white/40`
-                  }`}
+                  className={`relative rounded-3xl overflow-hidden shadow-2xl transition-all transform hover:scale-105 ${logro.desbloqueado ? "" : "grayscale opacity-50"
+                    }`}
                 >
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className={`text-2xl font-bold ${!logro.desbloqueado ? "line-through" : ""}`}>
-                      {logro.titulo}
-                    </h2>
-                    {logro.desbloqueado ? (
-                      <span className="text-4xl animate-bounce">🎉</span>
-                    ) : (
-                      <span className="text-4xl">🔒</span>
-                    )}
+                  <img
+                    src={logro.imagen}
+                    alt={logro.titulo}
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40" />
+                  <div className="relative z-10 p-8 text-white flex flex-col justify-between h-full">
+                    <div className="flex items-center justify-between mb-6">
+                      <h2 className={`text-2xl font-bold ${!logro.desbloqueado ? "line-through" : ""}`}>
+                        {logro.titulo}
+                      </h2>
+                      {logro.desbloqueado ? (
+                        <span className="text-4xl animate-bounce"></span>
+                      ) : (
+                        <span className="text-4xl">🔒</span>
+                      )}
+                    </div>
+                    <p className="text-lg mb-4">{logro.descripcion}</p>
+                    <span className="text-sm font-semibold px-3 py-1 rounded-full bg-white bg-opacity-30">
+                      {logro.mundo}
+                    </span>
                   </div>
-                  <p className="text-lg mb-4">{logro.descripcion}</p>
-                  <span className={`text-sm font-semibold px-3 py-1 rounded-full ${
-                    logro.desbloqueado ? "bg-white/30" : "bg-white/10"
-                  }`}>
-                    {logro.mundo}
-                  </span>
                 </div>
+
               ))}
             </div>
           )}

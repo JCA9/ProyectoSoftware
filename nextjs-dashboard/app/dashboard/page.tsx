@@ -61,7 +61,7 @@ export default function DashboardInicio() {
           <div className="bg-white/10 backdrop-blur-lg shadow-2xl rounded-3xl p-8 mb-12 border border-white/20 transition-all hover:shadow-3xl">
             <form onSubmit={handleCrearPost} className="flex flex-col space-y-6">
               <textarea
-                placeholder="💡 Comparte algo inspirador..."
+                placeholder="💭 ¿En qué estás pensando?"
                 className="w-full bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 text-white placeholder-white/70 focus:outline-none focus:ring-4 focus:ring-green-400/70 transition"
                 value={nuevoPost}
                 onChange={(e) => setNuevoPost(e.target.value)}
@@ -69,9 +69,9 @@ export default function DashboardInicio() {
               />
               <button
                 type="submit"
-                className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-extrabold py-3 px-8 rounded-2xl self-end transition-transform hover:scale-110 shadow-lg"
+                className="bg-gradient-to-r from-green-600 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-extrabold py-3 px-8 rounded-2xl self-end transition-transform hover:scale-110 shadow-lg"
               >
-                🚀 Publicar
+                Publicar
               </button>
             </form>
           </div>

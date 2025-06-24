@@ -40,7 +40,7 @@ export default function LeccionPage() {
           correcto = false;
           break;
         }
-      } 
+      }
       else if (leccion.tipoPregunta === 'multiple' || leccion.tipoPregunta === 'booleano') {
         const opcionSeleccionada = pregunta.opciones?.find((o: any) => o.id === parseInt(respuestaUsuario));
         if (!opcionSeleccionada || !opcionSeleccionada.esCorrecta) {
@@ -71,6 +71,7 @@ export default function LeccionPage() {
         <Sidebar />
         <main className="flex-1 p-10 md:ml-64 w-full flex flex-col items-center">
           <h1 className="text-5xl font-extrabold text-white mb-10">{leccion.nombre}</h1>
+
           <p className="text-white/80 text-xl mb-12">{leccion.descripcion}</p>
 
           <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 w-full max-w-3xl space-y-10">
@@ -118,7 +119,7 @@ export default function LeccionPage() {
 
             <div className="flex justify-center">
               <button
-                className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-extrabold py-4 px-10 rounded-2xl transition-transform hover:scale-110 shadow-lg text-xl"
+                className="bg-gradient-to-r from-green-600 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-extrabold py-4 px-10 rounded-2xl transition-transform hover:scale-110 shadow-lg text-xl"
                 onClick={manejarEnvio}
               >
                 Enviar Respuestas 🚀
@@ -131,6 +132,13 @@ export default function LeccionPage() {
               </div>
             )}
           </div>
+                    {/* Aquí agregamos el botón */}
+          <button
+            onClick={() => router.back()}
+            className=" mt-7 mb-6 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-xl shadow transition"
+          >
+            ⬅ Volver atrás
+          </button>
         </main>
       </div>
     </ProtectedRoute>

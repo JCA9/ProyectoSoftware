@@ -141,7 +141,7 @@ export default function ProgresoPage() {
         <Sidebar />
         <main className="flex-1 p-10 md:ml-64 w-full">
           <h1 className="text-5xl font-extrabold text-white mb-12 flex items-center gap-4">
-            📊 Tu Progreso
+            Tu Progreso
           </h1>
 
           {loading ? (

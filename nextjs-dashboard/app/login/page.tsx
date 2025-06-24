@@ -29,9 +29,9 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#0f2027] via-[#203a43] to-[#2c5364] flex items-center justify-center relative overflow-hidden">
-      
+
       {/* Imagen central animada */}
-      <div className="absolute top-28 left-1/2 -translate-x-1/2 z-0 animate-float">
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 z-0 animate-float">
         <Image src="/publicaciones/Saludando.png" alt="Personaje CodeQuest" width={300} height={300} className="object-contain drop-shadow-lg" />
       </div>
 
@@ -78,7 +78,14 @@ export default function LoginPage() {
             Regístrate aquí
           </Link>
         </p>
+        <div className="mt-8 flex justify-center">
+          <Link href="/" className="bg-white/20 hover:bg-white/30 text-white font-semibold px-8 py-3 rounded-xl shadow transition-transform hover:scale-105">
+            Volver al inicio
+          </Link>
+        </div>
       </div>
+
+
 
       {/* Animación flotante */}
       <style jsx>{`

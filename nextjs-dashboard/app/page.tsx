@@ -13,7 +13,7 @@ export default function HomePage() {
         </div>
 
         <Link href="/registro">
-          <button className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-black font-bold py-3 px-6 rounded-xl shadow-lg transition-transform hover:scale-105">
+          <button className="bg-gradient-to-r from-green-600 to-green-600 hover:from-green-500 hover:to-green-700 WHITE-black font-bold py-3 px-6 rounded-xl shadow-lg transition-transform hover:scale-105">
             Empieza Ahora
           </button>
         </Link>
@@ -21,18 +21,18 @@ export default function HomePage() {
 
       {/* Hero */}
       <section id="inicio" className="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-28 relative">
-        <div className="absolute top-32 left-1/2 -translate-x-1/2 z-0">
-          <Image src="/Duo.gif" alt="CodeQuest personajes" width={400} height={400} className="object-contain drop-shadow-lg" />
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 z-0 animate-float">
+          <Image src="/Programando2.png" alt="CodeQuest personajes" width={400} height={400} className="object-contain drop-shadow-lg" />
         </div>
 
-        <div className="relative z-10 mt-36 md:mt-16 max-w-3xl">
+        <div className="relative z-10 mt-36 md:mt-44 max-w-3xl">
           <h1 className="text-5xl font-extrabold mb-6">¡Aprende a programar de forma divertida y efectiva!</h1>
           <p className="text-xl mb-8 text-white/80">
             CodeQuest te enseña programación paso a paso con ejercicios interactivos, retos y logros desbloqueables.
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-6">
             <Link href="/registro">
-              <button className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-black font-extrabold py-4 px-10 rounded-xl shadow-xl text-lg transition-transform hover:scale-110">
+              <button className="bg-gradient-to-r from-green-600 to-green-600 hover:from-green-500 hover:to-green-700 WHITE-black font-extrabold py-4 px-10 rounded-xl shadow-xl text-lg transition-transform hover:scale-110">
                 EMPIEZA AHORA
               </button>
             </Link>
@@ -47,10 +47,32 @@ export default function HomePage() {
 
       {/* Lenguajes */}
       <section className="w-full py-12 bg-white text-gray-800 flex flex-wrap justify-center items-center gap-8">
-        {["Python", "JavaScript", "C++", "Java", "HTML", "SQL"].map((lang) => (
-          <span key={lang} className="text-xl font-semibold hover:text-green-600 transition">{lang}</span>
+        {[
+          { name: "Python", src: "/logos/python.png", disponible: true },
+          { name: "JavaScript", src: "/logos/javascript.png", disponible: true },
+          { name: "C++", src: "/logos/cpp.png", disponible: true },
+          { name: "Java", src: "/logos/java.png", disponible: true },
+          { name: "HTML", src: "/logos/html.png", disponible: true },
+          { name: "SQL", src: "/logos/sql.png", disponible: true },
+        ].map((lang) => (
+          <div
+            key={lang.name}
+            className={`flex flex-col items-center transition duration-300 ease-in-out transform ${lang.disponible ? "hover:-translate-y-3 hover:scale-125 cursor-pointer" : "opacity-60"}`}
+          >
+            <div className="w-24 h-24 relative">
+              <Image
+                src={lang.src}
+                alt={lang.name}
+                fill
+                className={`object-contain ${!lang.disponible ? "grayscale" : ""}`}
+              />
+            </div>
+            <span className="text-lg font-semibold mt-2">{lang.name} {!lang.disponible && <span className="text-sm text-gray-500">(Próximamente)</span>}</span>
+          </div>
         ))}
       </section>
+
+
 
       {/* Ventajas */}
       <section id="ventajas" className="w-full py-24 px-6 flex flex-col md:flex-row items-center justify-center gap-16">
@@ -61,14 +83,14 @@ export default function HomePage() {
           </p>
         </div>
         <div className="w-72 h-72 md:w-96 md:h-96 relative">
-          <Image src="/publicaciones/codificando-divertido.png" alt="Ilustración divertida" fill className="object-contain" />
+          <Image src="/amigos.png" alt="Ilustración divertida" fill className="object-contain" />
         </div>
       </section>
 
       {/* Ciencia */}
       <section id="ciencia" className="w-full py-24 px-6 flex flex-col-reverse md:flex-row items-center justify-center gap-16 bg-white text-black">
         <div className="w-72 h-72 md:w-96 md:h-96 relative">
-          <Image src="/publicaciones/respaldo-ciencia.png" alt="Respaldado por ciencia" fill className="object-contain" />
+          <Image src="/Ciencia.png" alt="Respaldado por ciencia" fill className="object-contain" />
         </div>
         <div className="max-w-lg text-center md:text-left">
           <h2 className="text-5xl font-extrabold text-green-600 mb-6">Respaldado por la ciencia</h2>
